@@ -1,0 +1,45 @@
+<br>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="javascript: window.history.back()">Previous</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Details</li>
+  </ol>
+</nav>
+<div class="row">
+  <div class="card col-lg-4 col-md-12 col-sm-12">
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <h6 class="card-subtitle mb-6 text-muted"></h6>
+      <p class="card-text">
+        <%if @movie["poster_path"].nil? != true%>
+        <img src="<%=gen_path(@imdb_img_path,@movie["poster_path"])%>" >
+        <%else%>
+        <%= image_tag "nomovie.png"%>
+        <%end%>
+        <span class="badge">
+          <center>
+
+          </center>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="col-lg-7 col-md-12 col-sm-12" xstyle="border: 1px solid black">
+    <h1 class="display-4"><%=@movie["original_title"]%></h1><br>
+    <p><b>Release date:</b> <%=@movie["release_date"].gsub("-","/")%></p>
+    <p <%=(@movie["tagline"]=="") ? "hidden": "" %>><b>Tagline:</b> "<%=@movie["tagline"]%>"</p>
+    <b>Overview</b><br>
+    <p><%=@movie["overview"]%></p>
+    <b>Genres</b>
+    [<%
+      counter = 1
+      @movie["genres"].each do |genre|
+      %>
+        <i><%=genre["name"]%></i>
+        <%=(counter < @movie["genres"].count) ? "," : "" %>
+      <%
+      counter = counter + 1
+      end
+    %>]
+  </div>
+</div>

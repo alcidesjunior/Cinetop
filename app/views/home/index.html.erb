@@ -1,0 +1,64 @@
+<h1 class="display-4">Upcoming movies</h1>
+<%row_define_by = 1%>
+<div class="row" >
+<%@movies["results"].each do |movie|%>
+    <div class="col-lg-4 col-md-12 col-sm-12" >
+      <div class="card" style="">
+        <a href="<%="details/#{movie["id"]}"%>" data-toggle="tooltip" data-placement="right" title="<%=movie["title"]%>" align="center">
+          <%if movie["poster_path"].nil? != true%><br>
+          <img src="<%=gen_path(@imdb_img_path,movie["poster_path"])%>" >
+          <%else%>
+          <br>
+          <%= image_tag "nomovie.png"%>
+          <%end%>
+        </a>
+        <div class="card-body">
+          <h5 class="card-title"><%=movie["original_title"]%></h5>
+          <p class="card-text">
+            <b>Release date</b> <%=movie["release_date"].gsub('-','/')%>
+            <br>
+            <%
+            counter = 1
+            about = details(movie["id"])["genres"]
+            %>
+            <b>Genres [</b>
+            <%about.each do |genre|%>
+            <%=genre["name"]%>
+            <%=(counter < about.count) ? "," : "" %>
+            <%
+            counter = counter + 1
+            end
+            %>
+            <b>]</b>
+          </p>
+        </div>
+      </div>
+    </div><br>
+
+
+  <% if row_define_by % 3 == 0 %>
+  </div><!-- fim row-->
+  <br>
+  <div class="row">
+  <%end%>
+  <%row_define_by = row_define_by + 1%>
+<%end%>
+</div>
+<br>
+<nav aria-label="">
+  <ul class="pagination pagination-lg">
+    <% (1..@movies["total_pages"]).each do |t|%>
+      <li class="page-item <%=(request.GET["page"].to_i == t) ? "active":""%>">
+        <a class="page-link" href="?page=<%=t%>">
+          <%if request.GET["page"].to_i == t%>
+
+              <%=t%>
+              <span class="sr-only">(current)</span>
+          <%else%>
+            <%=t%>
+          <%end%>
+        </a>
+      </li>
+    <%end%>
+  </ul>
+</nav>
