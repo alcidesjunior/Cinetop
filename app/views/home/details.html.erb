@@ -13,7 +13,7 @@
       <p class="card-text">
         <%if @movie["poster_path"].nil? != true%>
         <img src="<%=gen_path(@imdb_img_path,@movie["poster_path"])%>" >
-        <%else%>
+        <%else%> 
         <%= image_tag "nomovie.png"%>
         <%end%>
         <span class="badge">
