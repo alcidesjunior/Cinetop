@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About Cinetop
 
-Things you may want to cover:
+Cinetop is a web application made specially for movie buffs. You can see upcoming movies, search and ready some details about your favorite movie!
 
-* Ruby version
+## Installation
 
-* System dependencies
+Open your terminal and run this command line:
 
-* Configuration
+```bash
+bundle install
+```
+Then, run:
+```bash
+rails s
+```
 
-* Database creation
+## Special libraries used
+- bootstrap (Used to create and customize the front end screens.)
+- rest-client (Used to perform api requests)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
